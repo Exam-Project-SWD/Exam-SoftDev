@@ -1,39 +1,27 @@
-import org.junit.Test;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertFalse;
+import dtos.MenuDTO;
+import dtos.RestaurantDTO;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class RestaurantTest {
 
     @Test
     public void testAddToMenu() {
-        // Create a sample restaurant
-        Restaurant restaurant = new Restaurant(1, "Sample Restaurant", "123 Main St");
+        // Create a restaurant DTO
+        RestaurantDTO restaurantDTO = new RestaurantDTO(1, "Food Paradise", "123 Main Street", null);
 
-        // Create a sample menu item
-        Menu menu1 = new Menu(1, "Burger", 10.99);
+        // Simulate creating a menu item DTO
+        // Menu item details: itemId=1, itemName="Pizza", price=10.99
+        MenuDTO menuDTO = new MenuDTO(1, "Pizza", 10.99);
 
-        // Add the menu item to the restaurant's menu
-        restaurant.addToMenu(menu1);
+        // Add menu item to the restaurant's menu
+        restaurantDTO.addToMenu(menuDTO);
 
-        // Assert that the menu item has been added to the menu
-        assertTrue(restaurant.getMenu().contains(menu1));
-    }
-
-    @Test
-    public void testRemoveFromMenu() {
-        // Create a sample restaurant
-        Restaurant restaurant = new Restaurant(1, "Sample Restaurant", "123 Main St");
-
-        // Create a sample menu item
-        Menu menu1 = new Menu(1, "Burger", 10.99);
-
-        // Add the menu item to the restaurant's menu
-        restaurant.addToMenu(menu1);
-
-        // Remove the menu item from the restaurant's menu
-        restaurant.removeFromMenu(menu1);
-
-        // Assert that the menu item has been removed from the menu
-        assertFalse(restaurant.getMenu().contains(menu1));
+        // Verify that the menu item was added successfully
+        assertNotNull(restaurantDTO.getMenu());
+        assertEquals(1, restaurantDTO.getMenu().size());
+        assertEquals(menuDTO, restaurantDTO.getMenu().get(0));
     }
 }

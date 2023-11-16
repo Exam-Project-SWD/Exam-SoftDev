@@ -1,22 +1,26 @@
-import java.util.ArrayList;
+package entities;
+
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
 public class Customer {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int customerId;
+
     private String name;
     private String email;
     private String phoneNumber;
+
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     private List<Order> orders;
 
-    public Customer(int customerId, String name, String email, String phoneNumber) {
-        this.customerId = customerId;
-        this.name = name;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-        this.orders = new ArrayList<>();
-    }
+    // Constructors, getters, and setters...
 
     // Getters and setters for customer attributes
+
     public int getCustomerId() {
         return customerId;
     }

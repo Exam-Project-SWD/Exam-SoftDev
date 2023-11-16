@@ -1,18 +1,23 @@
+package entities;
+
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class Restaurant {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int restaurantId;
+
     private String name;
     private String location;
+
+    @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL)
     private List<Menu> menu;
 
-    public Restaurant(int restaurantId, String name, String location) {
-        this.restaurantId = restaurantId;
-        this.name = name;
-        this.location = location;
-        this.menu = new ArrayList<>();
-    }
+    // Constructors, getters, and setters...
 
     // Getters and setters for restaurant attributes
     public int getRestaurantId() {

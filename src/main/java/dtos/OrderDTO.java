@@ -1,22 +1,27 @@
+package dtos;
+
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
-public class Order {
+public class OrderDTO {
     private int orderId;
-    private Customer customer;
-    private Restaurant restaurant;
+    private CustomerDTO customer;
+    private RestaurantDTO restaurant;
     private LocalDateTime orderTime;
-    private String status; // Pending, In Progress, Delivered, etc.
-    // Other relevant order details
+    private String status;
+    private List<MenuDTO> orderItems;
 
-    public Order(int orderId, Customer customer, Restaurant restaurant, LocalDateTime orderTime) {
+    public OrderDTO(int orderId, CustomerDTO customer, RestaurantDTO restaurant,
+                    LocalDateTime orderTime, String status) {
         this.orderId = orderId;
         this.customer = customer;
         this.restaurant = restaurant;
         this.orderTime = orderTime;
-        this.status = "Pending"; // Default status
+        this.status = status;
+        this.orderItems = new ArrayList<>();
     }
 
-    // Getters and setters for order attributes
     public int getOrderId() {
         return orderId;
     }
@@ -25,19 +30,19 @@ public class Order {
         this.orderId = orderId;
     }
 
-    public Customer getCustomer() {
+    public CustomerDTO getCustomer() {
         return customer;
     }
 
-    public void setCustomer(Customer customer) {
+    public void setCustomer(CustomerDTO customer) {
         this.customer = customer;
     }
 
-    public Restaurant getRestaurant() {
+    public RestaurantDTO getRestaurant() {
         return restaurant;
     }
 
-    public void setRestaurant(Restaurant restaurant) {
+    public void setRestaurant(RestaurantDTO restaurant) {
         this.restaurant = restaurant;
     }
 
@@ -55,6 +60,18 @@ public class Order {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public List<MenuDTO> getOrderItems() {
+        return orderItems;
+    }
+
+    public void setOrderItems(List<MenuDTO> orderItems) {
+        this.orderItems = orderItems;
+    }
+
+    public void addMenuItem(MenuDTO item) {
+        this.orderItems.add(item);
     }
 
     // Other methods related to order functionalities
